@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { ApolloProvider } from '@apollo/client';
+import { client } from './ApolloClient';
+import UserList from './components/UserList';
+import PostList from './components/PostList';
+import CreateUserForm from './components/CreateUserForm';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <ApolloProvider client={client}>
+            <div className="App">
+                <h1>My App</h1>
+                <div style={{ display: 'flex' }}>
+                    <div style={{ flex: 1, padding: '20px' }}>
+                        <UserList />
+                    </div>
+                    <div style={{ flex: 1, padding: '20px' }}>
+                        <PostList />
+                    </div>
+                </div>
+                <div style={{ padding: '20px' }}>
+                    <h2>Create User</h2>
+                    <CreateUserForm />
+                </div>
+            </div>
+        </ApolloProvider>
+    );
 }
 
 export default App;
